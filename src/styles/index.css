@@ -28,11 +28,14 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  justify-content: center;
 }
 
 button {
@@ -65,4 +68,52 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+/*
+#personal-formbox {
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: 4;
+  row-gap: 10px;
+}
+
+label {
+grid-column: 1 / 1;
+
+}
+
+input {
+
+  grid-column: 2 / 2;
+
+}
+  */
+
+ul {
+  display: grid;
+  grid-template-columns: 2;
+  row-gap: 10px;
+
+}
+
+li {
+  display:inline-block;
+
+}
+
+#labels {
+grid-column: 1 / 2;
+display: flex;
+flex-direction: column;
+
+}
+
+#inputs {
+grid-column: 2 / 2;
+
+display: flex;
+flex-direction: column;
+row-gap: 15px;
 }
