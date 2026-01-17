@@ -61,7 +61,7 @@ function Button(props) {
 
 
 
-function Personal() {
+function Personal({ onSubmit }) {
 
 
 
@@ -99,7 +99,7 @@ const toggleView = () => {
 const handleSubmit = (e) => {
   e.preventDefault(); // ⬅️ stops page refresh
   
-   setSubmittedData({
+   onSubmit({
     firstName,
     lastName,
     email,
@@ -119,29 +119,7 @@ const handleSubmit = (e) => {
 
     </header>
     
-<div id="CVPrintout">
 
-{submittedData && (
-  <div className="results">
-    <h4>Submitted Information</h4>
-
-    <div id="personalDetails">
-      <strong>{submittedData.firstName} </strong>
-    <strong>{submittedData.lastName} </strong>
-    </div>
-
-<div id="contactDetails">
-    <strong>Email: {submittedData.email} </strong>
-    <strong>Phone: {submittedData.phoneNumber} </strong>
-
-    </div>
-
-  </div>
-)}
-
-
-
-</div>
 
 
     
@@ -195,7 +173,7 @@ const handleSubmit = (e) => {
         />
       </label>
 
-      <Button text="Update" color="blue" fontSize={12} width="70px" type="submit" onClick={submittedData} />
+      <Button text="Update" color="blue" fontSize={12} width="70px" type="submit" />
 
     
 

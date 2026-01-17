@@ -31,6 +31,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  
 }
 
 h1 {
@@ -130,6 +131,13 @@ justify-content: space-evenly;
 }
 */
 
+#CVPrintout {
+  
+display: flex;
+flex-direction: column;
+width: 400px;
+
+}
 
 #personalDetails {
   display: flex;
@@ -137,6 +145,8 @@ justify-content: space-evenly;
   column-gap: 10px;
   justify-content: center;
   font-size: 30px;
+width: 400px;
+  
 }
 
 #contactDetails {
@@ -145,8 +155,18 @@ justify-content: space-evenly;
   column-gap: 20px;
   justify-content: center;
   padding-bottom: 50px;
+  
+
 }
 
+
+
+#educationDetails {
+
+  display: flex;
+  
+  flex-direction: column;
+}
 
 #header2 {
 background-color: #2EC4B6;
@@ -156,6 +176,7 @@ padding-top: 2px;
 padding-bottom: 2px;
 border-radius: 8px;
 margin-bottom: 10px;
+grid-row: 2;
 }
 
 
@@ -193,6 +214,12 @@ h3 {
 visibility: visible;
 }
 
-#hidden {
+.hidden {
   visibility: hidden; 
+}
+
+#checkmark {
+  display:flex;
+  flex-direction: row;
+  
 }
