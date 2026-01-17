@@ -91,6 +91,7 @@ input {
 }
   */
 
+  /*
 ul {
   display: grid;
   grid-template-columns: 2;
@@ -116,4 +117,39 @@ grid-column: 2 / 2;
 display: flex;
 flex-direction: column;
 row-gap: 15px;
+}
+
+#submit {
+
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+
+}
+*/
+
+
+form {
+display: flex;
+flex-direction: column;
+row-gap: 8px;
+justify-content: center;
+
+}
+
+label {
+display: flex;
+flex-direction: column;
+}
+
+input {
+  width: auto;
+}
+
+button {
+  display: flex;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+ 
 }

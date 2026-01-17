@@ -30,21 +30,44 @@ const personalForm = new FormData();
 
 }; 
 
+function Button(props) {
+  const buttonStyle = {
+    color: props.color,
+    fontSize: props.fontSize + 'px',
+    width: props.width,
+    
+    
+  };
+
+
+  return (
+    <button style={buttonStyle}>{props.text}</button>
+    
+  );
+}
 
 
 
-function Personal() {
 
 
+function Personal(e) {
+
+
+
+{/*
 const personalInfo = ['First Name', 'Last Name', 'Email', 'Phone Number'];
  
 
 
 
 const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
+ */}
 
 
-
+ const [firstName, setFirstName] = useState('');
+ const [lastName, setLastName] = useState('');
+ const [email, setEmail] = useState('');
+ const [phoneNumber, setPhoneNumber] = useState('');
  
 
   return (
@@ -60,9 +83,54 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
     
     <h3>Personal Information</h3>
 
+
+<div id="formbox">
+    <form>
+
+<label>
+        First Name:
+        <input
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+          placeholder='Jane'
+          
+        />
+      </label>
+
+      <label>
+        Last Name:
+        <input
+          value={lastName}
+          onChange={e => setLastName(e.target.value)}
+          placeholder='Doe'
+        />
+      </label>
+
+       <label>
+        Email:
+        <input
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder='you@you.com'
+        />
+      </label>
+
+       <label>
+        Phone Number:
+        <input
+          value={phoneNumber}
+          onChange={e => setPhoneNumber(e.target.value)}
+          placeholder='416-111-1111'
+        />
+      </label>
+
+      <Button text="Update" color="blue" fontSize={12} width="70px" />
+
     
 
+</form>
 
+</div>
 
  {/* 
 <form>
@@ -93,6 +161,7 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
   </form>
   */}
  
+ {/*
  <form>
 
   <ul>
@@ -109,10 +178,21 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
 <input type="text" name="phoneNumber" placeholder='416-111-1111' >{personalValues.phoneNumber}</input>
 </div>
 
+
+
 </ul> 
 
+/*}
+
+<div id='submit'>
+
+<Button text="Update" color="blue" fontSize={12} />
+{/* <Button text="Edit" color="blue" fontSize={12} /> */}
+{/*
+</div>
+
 </form>
- 
+ */}
 
 
 
