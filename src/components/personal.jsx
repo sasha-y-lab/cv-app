@@ -36,7 +36,6 @@ const personalForm = new FormData();
 
 
 
-
 function Button(props) {
   const buttonStyle = {
     color: props.color,
@@ -60,18 +59,11 @@ function Button(props) {
 }
 
 
-const handleSubmit = (e) => {
-  e.preventDefault(); // ⬅️ stops page refresh
-  console.log({
-    firstName,
-    lastName,
-    email,
-    phoneNumber
-  });
-};
 
 
 function Personal() {
+
+
 
 
 
@@ -85,6 +77,7 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
  */}
 
 
+
  const [firstName, setFirstName] = useState('');
  const [lastName, setLastName] = useState('');
  const [email, setEmail] = useState('');
@@ -93,8 +86,25 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
  
 const [isVisible, setIsVisible] = useState(false);
  
+const [submittedData, setSubmittedData] = useState(null);
+
 const toggleView = () => {
   setIsVisible(prev => !prev);
+};
+
+
+
+
+
+const handleSubmit = (e) => {
+  e.preventDefault(); // ⬅️ stops page refresh
+  
+   setSubmittedData({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+  });
 };
 
   return (
@@ -109,10 +119,36 @@ const toggleView = () => {
 
     </header>
     
-    
+<div id="CVPrintout">
 
-    <h3>Personal Information <Button type="button" text="View" color="blue" fontSize={12} width="70px" onClick={toggleView} /></h3>
+{submittedData && (
+  <div className="results">
+    <h4>Submitted Information</h4>
+
+    <div id="personalDetails">
+      <strong>{submittedData.firstName} </strong>
+    <strong>{submittedData.lastName} </strong>
+    </div>
+
+<div id="contactDetails">
+    <strong>Email: {submittedData.email} </strong>
+    <strong>Phone: {submittedData.phoneNumber} </strong>
+
+    </div>
+
+  </div>
+)}
+
+
+
+</div>
+
+
+    
+<div id="header2">
+    <h3>Personal Information <Button type="button" text={isVisible ? "Hide" : "View"} color="blue" fontSize={12} width="70px" onClick={toggleView} /></h3>
      
+     </div>
 
 <div id='maintitle' className={isVisible ? "visible" : "hidden"}>
 
@@ -159,7 +195,7 @@ const toggleView = () => {
         />
       </label>
 
-      <Button text="Update" color="blue" fontSize={12} width="70px" type="submit" />
+      <Button text="Update" color="blue" fontSize={12} width="70px" type="submit" onClick={submittedData} />
 
     
 
