@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 
  
+{/*
 function PersonalItem(props) {
   return <li>{props.info}</li>
 }
@@ -30,6 +31,12 @@ const personalForm = new FormData();
 
 }; 
 
+*/}
+
+
+
+
+
 function Button(props) {
   const buttonStyle = {
     color: props.color,
@@ -41,16 +48,30 @@ function Button(props) {
 
 
   return (
-    <button style={buttonStyle}>{props.text}</button>
+    <button
+      type={props.type || "button"}
+      style={buttonStyle}
+      onClick={props.onClick}
+    >
+      {props.text}
+    </button>
     
   );
 }
 
 
+const handleSubmit = (e) => {
+  e.preventDefault(); // ⬅️ stops page refresh
+  console.log({
+    firstName,
+    lastName,
+    email,
+    phoneNumber
+  });
+};
 
 
-
-function Personal(e) {
+function Personal() {
 
 
 
@@ -69,9 +90,16 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
  const [email, setEmail] = useState('');
  const [phoneNumber, setPhoneNumber] = useState('');
  
+ 
+const [isVisible, setIsVisible] = useState(false);
+ 
+const toggleView = () => {
+  setIsVisible(prev => !prev);
+};
 
   return (
   
+    
   <>
 
 
@@ -81,11 +109,18 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
 
     </header>
     
-    <h3>Personal Information</h3>
+    
+
+    <h3>Personal Information <Button type="button" text="View" color="blue" fontSize={12} width="70px" onClick={toggleView} /></h3>
+     
+
+<div id='maintitle' className={isVisible ? "visible" : "hidden"}>
 
 
+
+{isVisible && (
 <div id="formbox">
-    <form>
+    <form onSubmit={handleSubmit}>
 
 <label>
         First Name:
@@ -124,11 +159,15 @@ const personalInfoList = personalInfo.map((info) => <li key={info}>{info}</li>)
         />
       </label>
 
-      <Button text="Update" color="blue" fontSize={12} width="70px" />
+      <Button text="Update" color="blue" fontSize={12} width="70px" type="submit" />
 
     
 
 </form>
+
+</div>
+
+)}
 
 </div>
 

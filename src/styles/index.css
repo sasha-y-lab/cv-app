@@ -153,3 +153,16 @@ button {
   margin-right: 0px;
  
 }
+
+h3 {
+  display: flex;
+  flex-direction: row;
+}
+
+.isVisible {
+visibility: visible;
+}
+
+#hidden {
+  visibility: hidden; 
+}
