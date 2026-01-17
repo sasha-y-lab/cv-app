@@ -4,45 +4,57 @@ import Education from "./edu.jsx";
 
 function Display() {
   const [personalData, setPersonalData] = useState(null);
-  const [educationData, setEducationData] = useState(null);
+  const [educationData, setEducationData] = useState([]); // ✅ ARRAY
 
   return (
     <>
       {/* CV Preview */}
-      <div id="CVPrintout">
-        {personalData && (
-          <div id="personalDetails">
-            <strong>
-              {personalData.firstName} {personalData.lastName}
-            </strong>
-            
+{personalData && (
+  <div id="CVPrintout">
+    {/* Personal Details */}
+    <div id="personalDetails">
+      <strong>
+        {personalData.firstName} {personalData.lastName}
+      </strong>
 
-            <div id="contactDetails"> 
-             Email: {personalData.email} | Phone: {personalData.phoneNumber} 
-              </div>
-            
-          </div>
-        )}
-
-        {educationData && (
-          <div id="educationDetails">
-            <h3>EDUCATION</h3>
-            
-            <p>
-              {educationData.schoolName}, {educationData.location}
-            </p>
-
-            <p>
-              {educationData.degree} — {educationData.graduationDate}
-            </p>
-            <p>{educationData.yesGraduated ? "Graduated" : "Not Graduated"}</p>
-          </div>
-        )}
+      <div id="contactDetails">
+        Email: {personalData.email} | Phone: {personalData.phoneNumber}
       </div>
+    </div>
 
-      {/* Forms (kept in their respective files) */}
+    {/* Education Details */}
+    {educationData.length > 0 && (
+      <div id="educationDetails">
+        <h3>EDUCATION</h3>
+
+        {educationData.map((edu, index) => (
+          <div key={index} className="educationItem">
+            <p>
+              <strong>{edu.schoolName}</strong>, {edu.location}
+            </p>
+
+            <p>
+              {edu.degree} — {edu.graduationDate}
+            </p>
+
+            <p>
+              {edu.yesGraduated ? "Graduated" : "Not Graduated"}
+            </p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
+
+     
+
+      {/* Forms */}
       <Personal onSubmit={setPersonalData} />
+      <p>
       <Education onSubmit={setEducationData} />
+      </p>
+
     </>
   );
 }
