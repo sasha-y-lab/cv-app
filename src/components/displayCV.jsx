@@ -20,7 +20,8 @@ function Display() {
       </strong>
 
       <div id="contactDetails">
-        Email: {personalData.email} | Phone: {personalData.phoneNumber}
+       <strong> Email:</strong> {personalData.email} 
+       <strong>Phone:</strong> {personalData.phoneNumber}
       </div>
     </div>
 
@@ -36,7 +37,7 @@ function Display() {
             </p>
 
             <p>
-              {edu.degree} — {edu.graduationDate}
+              {edu.degree} — {formatDate(edu.graduationDate)}
             </p>
 
             <p>
@@ -52,29 +53,17 @@ function Display() {
 
     {/* Work Details */}
     {workData.length > 0 && (
-      <div id="workDetails">
-        <h3>WORK</h3>
-
-        {workData.map((work, index) => (
-          <div key={index} className="workItem">
-           
-
-            <p>
-              {work.position}
-            </p>
-
- <p>
-              <strong>{work.companyName}</strong>, {work.location}
-            </p>
-
-             <p>
-              {work.startDate} — {work.endDate}
-            </p>
-
-          </div>
-        ))}
+  <div id="workDetails">
+    <h3>WORK</h3>
+    {workData.map((work, index) => (
+      <div key={index} className="workItem">
+        <p><strong>{work.position}</strong></p>
+        <p><strong>{work.companyName}</strong>, {work.location}</p>
+        <p>{formatDate(work.startDate)} - {formatDate(work.endDate)}</p>
       </div>
-    )}
+    ))}
+  </div>
+)}
   </div>
 )}
 
@@ -92,5 +81,12 @@ function Display() {
     </>
   );
 }
+
+function formatDate(dateString) {
+  if (!dateString) return "";
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
 
 export default Display;

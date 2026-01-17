@@ -18,7 +18,6 @@ function Button(props) {
 
 function Work({ onSubmit }) {
   const [isVisible, setIsVisible] = useState(false);
-
   const [works, setWorks] = useState([
     {
       companyName: "",
@@ -29,42 +28,62 @@ function Work({ onSubmit }) {
     },
   ]);
 
+  const [errors, setErrors] = useState({});
+
   const toggleView = () => setIsVisible(prev => !prev);
 
   const addWork = () => {
     setWorks(prev => [
       ...prev,
-      {
-        companyName: "",
-      location: "",
-      position: "",
-      startDate: "",
-      endDate: "",
-
-      },
+      { companyName: "", location: "", position: "", startDate: "", endDate: "" },
     ]);
   };
 
-const deleteWork = (index) => {
-  setWorks(prev => {
-    const updated = prev.filter((_, i) => i !== index);
-    onSubmit(updated); // 🔥 live sync
-    return updated;
-  });
-};
+  const deleteWork = (index) => {
+    setWorks(prev => {
+      const updated = prev.filter((_, i) => i !== index);
+      onSubmit(updated); // update Display.jsx immediately
+      return updated;
+    });
+  };
 
   const handleChange = (index, field, value) => {
     setWorks(prev =>
-      prev.map((work, i) =>
-        i === index ? { ...work, [field]: value } : work
-      )
+      prev.map((work, i) => (i === index ? { ...work, [field]: value } : work))
     );
+  };
+
+  const validateWork = () => {
+    const newErrors = {};
+
+    works.forEach((work, index) => {
+      newErrors[index] = {};
+      if (!work.companyName || work.companyName.trim().length < 5) {
+        newErrors[index].companyName = "Company name required (min 5 chars)";
+      }
+      if (!work.location || work.location.trim().length < 5) {
+        newErrors[index].location = "Location required (min 5 chars)";
+      }
+      if (!work.position || work.position.trim().length < 5) {
+        newErrors[index].position = "Position required (min 5 chars)";
+      }
+      if (!work.startDate) newErrors[index].startDate = "Start date required";
+      if (!work.endDate) newErrors[index].endDate = "End date required";
+      if (work.startDate && work.endDate && work.startDate > work.endDate) {
+        newErrors[index].endDate = "End date must be after start date";
+      }
+    });
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every(errObj => Object.keys(errObj).length === 0);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(works); // send ALL work entries up
-    setIsVisible(false);
+    if (validateWork()) {
+      onSubmit(works); // send works to Display.jsx
+      setIsVisible(false);
+    }
   };
 
   return (
@@ -118,6 +137,12 @@ const deleteWork = (index) => {
                   />
                 </label>
 
+                {errors[index]?.companyName && (
+  <div style={{ color: "red", fontSize: "12px" }}>
+    {errors[index].companyName}
+  </div>
+)}
+
                 <label>
                   Location:
                   <input
@@ -129,6 +154,12 @@ const deleteWork = (index) => {
                     }
                   />
                 </label>
+
+                {errors[index]?.location && (
+  <div style={{ color: "red", fontSize: "12px" }}>
+    {errors[index].location}
+  </div>
+)}
 
                 <label>
                   Position:
@@ -143,10 +174,16 @@ const deleteWork = (index) => {
                   />
                 </label>
 
+                {errors[index]?.position && (
+  <div style={{ color: "red", fontSize: "12px" }}>
+    {errors[index].position}
+  </div>
+)}
+
                 <label>
                   Start Date:
                   <input
-                  type="calendar"
+                  type="date"
                     value={work.startDate}
                     placeholder="2010"
                     onChange={e =>
@@ -155,10 +192,16 @@ const deleteWork = (index) => {
                   />
                 </label>
 
+                {errors[index]?.startDate && (
+  <div style={{ color: "red", fontSize: "12px" }}>
+    {errors[index].startDate}
+  </div>
+)}
+
                 <label>
                   End Date:
                   <input
-                    type="calendar"
+                    type="date"
                     placeholder="2023"
                     value={work.endDate}
                     onChange={e =>
@@ -166,6 +209,12 @@ const deleteWork = (index) => {
                     }
                   />
                 </label>
+
+                {errors[index]?.endDate && (
+  <div style={{ color: "red", fontSize: "12px" }}>
+    {errors[index].endDate}
+  </div>
+)}
 
                 <hr />
               </div>
@@ -210,6 +259,9 @@ const deleteWork = (index) => {
     </div>
   );
 }
+
+
+
 
 
 

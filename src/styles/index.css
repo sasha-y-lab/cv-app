@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 a {
@@ -26,11 +27,11 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 400px;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   
 }
 
@@ -39,6 +40,8 @@ h1 {
   line-height: 1.1;
   justify-content: center;
   text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 button {
@@ -75,6 +78,11 @@ button:focus-visible {
   }
 }
 
+#formbox {
+  max-width: 400px;      /* or whatever width you want */
+  width: 100%;
+  margin: 0 auto;        /* center horizontally */
+}
 
 /*
 #personal-formbox {
@@ -138,11 +146,14 @@ justify-content: space-evenly;
 display: grid;
 grid-template-columns: 3;
 grid-template-rows: 6;
-width: 400px;
-padding: 50px;
+width: 350px;
+padding: 100px;
 border-color: black;
 border-width: 3px;
 border-style: solid;
+margin-top: 100px;
+padding-left: 100px;
+
 
 }
 
@@ -150,21 +161,24 @@ border-style: solid;
   column-gap: 10px;
   font-size: 30px;
   grid-row: 1 / 6;
-  grid-column: 2 / 3;
+  grid-column: 1 / 3;
   align-items: center;
   column-gap: 20px;
   text-align: center;
   
+  
 }
 
 #contactDetails {
-  column-gap: 20px;
+  display: grid;
   padding-bottom: 50px;
-  grid-row: 2 / 6;
-  grid-column: 2 / 3;
+  padding-top: 25px;
   font-size: 16px;
   text-align: center;
-  
+  row-gap: 10px;
+  grid-row: 2 / 6;
+  align-self: center;
+
 
 }
 
@@ -226,6 +240,7 @@ flex-direction: column;
 row-gap: 8px;
 justify-content: center;
 
+
 }
 
 label {
@@ -262,4 +277,11 @@ visibility: visible;
   display:flex;
   flex-direction: row;
   
+}
+
+#educationSection, #personalSection, #workSection {
+
+padding-left: 100px;
+padding-right: 100px;
+
 }
