@@ -133,28 +133,32 @@ justify-content: space-evenly;
 
 #CVPrintout {
   
-display: flex;
-flex-direction: column;
+display: grid;
+grid-template-columns: 3;
+grid-template-rows: 6;
 width: 400px;
+padding: 50px;
 
 }
 
 #personalDetails {
-  display: flex;
-  flex-direction: row;
   column-gap: 10px;
-  justify-content: center;
   font-size: 30px;
-width: 400px;
+  grid-row: 1 / 6;
+  grid-column: 2 / 3;
+  align-items: center;
+  column-gap: 20px;
+  text-align: center;
   
 }
 
 #contactDetails {
-  display: flex;
-  flex-direction: row;
   column-gap: 20px;
-  justify-content: center;
   padding-bottom: 50px;
+  grid-row: 2 / 6;
+  grid-column: 2 / 3;
+  font-size: 16px;
+  text-align: center;
   
 
 }
@@ -162,11 +166,11 @@ width: 400px;
 
 
 #educationDetails {
+grid-row: 6 / 6;
+grid-column: 1 / 3;
 
-  display: flex;
-  
-  flex-direction: column;
 }
+
 
 #header2 {
 background-color: #2EC4B6;

@@ -27,11 +27,13 @@ function Display() {
         {educationData && (
           <div id="educationDetails">
             <h3>EDUCATION</h3>
-            <p>
-              {educationData.degree} — {educationData.graduationDate}
-            </p>
+            
             <p>
               {educationData.schoolName}, {educationData.location}
+            </p>
+
+            <p>
+              {educationData.degree} — {educationData.graduationDate}
             </p>
             <p>{educationData.yesGraduated ? "Graduated" : "Not Graduated"}</p>
           </div>
